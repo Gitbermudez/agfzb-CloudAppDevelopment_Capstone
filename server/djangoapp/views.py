@@ -47,12 +47,13 @@ def login_request(request):
         if user is not None:
             # If user is valid, call login method to login current user
             login(request, user)
-            return redirect('onlinecourse:popular_course_list')
+            # return redirect('djangoapp:popular_course_list')
+            return redirect('djangoapp:djangoapp')
         else:
             # If not, return to login page again
-            return render(request, 'onlinecourse/user_login.html', context)
+            return render(request, 'djangoapp/user_login.html', context)
     else:
-        return render(request, 'onlinecourse/user_login.html', context)
+        return render(request, 'djangoapp/user_login.html', context)
 
 
 
@@ -75,7 +76,7 @@ def registration_request(request):
     context = {}
     # If it is a GET request, just render the registration page
     if request.method == 'GET':
-        return render(request, 'onlinecourse/user_registration.html', context)
+        return render(request, 'djangoapp/user_registration.html', context)
     # If it is a POST request
     elif request.method == 'POST':
         # Get user information from request.POST
@@ -98,9 +99,9 @@ def registration_request(request):
                                             password=password)
             # Login the user and redirect to course list page
             login(request, user)
-            return redirect("onlinecourse:popular_course_list")
+            return redirect("djangoapp:djangoapp")
         else:
-            return render(request, 'onlinecourse/user_registration.html', context)
+            return render(request, 'djangoapp/user_registration.html', context)
 
 
 
