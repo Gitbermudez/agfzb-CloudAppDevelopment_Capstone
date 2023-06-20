@@ -48,14 +48,14 @@ def login_request(request):
             # If user is valid, call login method to login current user
             login(request, user)
             # return redirect('djangoapp:popular_course_list')
-            return redirect('djangoapp:djangoapp')
+            return redirect('djangoapp:index')
         else:
             # If not, return to login page again
             return render(request, 'djangoapp/user_login.html', context)
     else:
         return render(request, 'djangoapp/user_login.html', context)
 
-
+# Create authentication related views
 
 # Create a `logout_request` view to handle sign out request
 # def logout_request(request):
@@ -66,7 +66,7 @@ def logout_request(request):
     # Logout user in the request
     logout(request)
     # Redirect user back to course list view
-    return redirect('djangoapp:djangoapp')
+    return redirect('djangoapp:index')
 
 
 # Create a `registration_request` view to handle sign up request
@@ -119,4 +119,5 @@ def get_dealerships(request):
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
+
 

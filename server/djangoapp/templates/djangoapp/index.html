@@ -16,12 +16,13 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Best Cars Dealerships</a>
+               <!-- <a class="navbar-brand" href="#">Best Cars Dealerships</a> -->
+                <a class="navbar-brand" href="{% url 'djangoapp:about' %}">Dealership Review</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>
-                     <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a> 
+                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a> 
                     <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
                 </li>
                 {% else %}
@@ -38,8 +39,8 @@
                 </li>
                 {% endif %}
             </ul>
-            <a class="nav navbar-nav" class="active" href="about">About</a>
-            <a class="nav navbar-nav" href="contact">Contact Us</a> 
+            <!-- <a class="nav navbar-nav" class="active" href="about">About</a>
+            <a class="nav navbar-nav" href="contact">Contact Us</a>  -->
         </div>
     </nav>
     <!--Add a dealer table here -->
