@@ -36,7 +36,7 @@ def contact_request(request):
 # def login_request(request):
 # ...
 def login_request(request):
-    context = {}
+   # context = {}
 
     # Handles POST request
     if request.method == "POST":
@@ -56,8 +56,8 @@ def login_request(request):
             return redirect("djangoapp:index")
 
            # return render(request, 'djangoapp/user_login.html', context) 
-    else:
-        return render(request, 'djangoapp/user_login.html', context)
+    #else:
+        #return render(request, 'djangoapp/user_login.html', context)
 
 # Create authentication related views
 
