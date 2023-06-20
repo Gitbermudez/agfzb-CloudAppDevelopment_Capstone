@@ -37,6 +37,7 @@ def contact_request(request):
 # ...
 def login_request(request):
     context = {}
+
     # Handles POST request
     if request.method == "POST":
         # Get username and password from request.POST dictionary
@@ -51,7 +52,10 @@ def login_request(request):
             return redirect('djangoapp:index')
         else:
             # If not, return to login page again
-            return render(request, 'djangoapp/user_login.html', context)
+            messages.warning(request, "Invalid username or password.")
+            return redirect("djangoapp:index")
+
+           # return render(request, 'djangoapp/user_login.html', context) 
     else:
         return render(request, 'djangoapp/user_login.html', context)
 
@@ -99,7 +103,7 @@ def registration_request(request):
                                             password=password)
             # Login the user and redirect to course list page
             login(request, user)
-            return redirect("djangoapp:djangoapp")
+            return redirect("djangoapp:index")
         else:
             return render(request, 'djangoapp/user_registration.html', context)
 
