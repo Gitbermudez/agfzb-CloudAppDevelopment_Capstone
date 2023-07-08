@@ -14,8 +14,7 @@ class CarMake(models.Model):
     description = models.TextField(max_length=500)
 
     def __str__(self):
-        return self.name
-
+        return self.name   
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
 # - Name
