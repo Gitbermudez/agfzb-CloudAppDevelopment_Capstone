@@ -25,7 +25,19 @@ def get_request(url, **kwargs):
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
-
+def post_request(url, json_payload, **kwargs):
+    '''
+     Create a `post_request` to make HTTP POST requests
+    '''
+    print(kwargs)
+    print("POST to {} ".format(url))
+    print(json_payload)
+    try:
+        response = requests.post(url, json=json_payload, params=kwargs)
+    except:
+        print("Something went wrong")
+        return response.status_code
+    return response
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
 # def get_dealers_from_cf(url, **kwargs):
@@ -33,22 +45,33 @@ def get_request(url, **kwargs):
 # - Parse JSON results into a CarDealer object list
 def get_dealers_from_cf(url, **kwargs):
     results = []
+    state = kwargs.get("state")
+    if state:
+        json_result = get_request(url, state=state)
+    else:
+        json_result = get_request(url)
+    if json_result:
     # Call get_request with a URL parameter
-    json_result = get_request(url)
-    if json_result and "body" in json_result:
+        dealers = json_result["rows"]
         # Get the row list in JSON as dealers
-        dealerships = json_result["body"]
         # For each dealer object
         #for dealer in dealers:
-        for dealer in dealerships:
+        for dealer in dealers:
             # Get its content in `doc` object
-            if "doc" in dealer and "address" in dealer["doc"]:            
+            #if "doc" in dealer and "address" in dealer["doc"]:            
                 dealer_doc = dealer["doc"]
                 # Create a CarDealer object with values in `doc` object
-                dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
-                                   id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
-                                   short_name=dealer_doc["short_name"],
-                                   st=dealer_doc["st"], zip=dealer_doc["zip"])
+                dealer_obj = CarDealer(
+                    address=dealer_doc(["address"),
+                    city=dealer_doc("city"),
+                    #full_name=dealer_doc("full_name"),
+                    id=dealer_doc("id"),
+                    lat=dealer_doc("lat"),
+                    long=dealer_doc("long"),
+                    #short_name=dealer_doc("short_name"),
+                    st=dealer_doc("st"),
+                    zip=dealer_doc("zip")
+                )
                 results.append(dealer_obj)
     return results
 

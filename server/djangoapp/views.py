@@ -11,7 +11,10 @@ from django.contrib import messages
 from datetime import datetime
 import logging
 import json
-
+#from . import restapis
+#from . import models
+#from .models import CarMake,CarModel
+#from .restapis import get_dealers_from_cf, get_request
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -120,14 +123,15 @@ def registration_request(request):
 def get_dealerships(request):
     context={}
     if request.method == "GET":
-         #url = "your-cloud-function-domain/dealerships/dealer-get"
+        #url = "your-cloud-function-domain/dealerships/dealer-get"
         url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/get-dealership"
         # Get dealers from the URL
-        #dealerships = get_dealers_from_cf(url)
-        context["dealerships"] = get_dealers_from_cf(url)
+        dealerships = get_dealers_from_cf(url)
+        #context["dealerships"] = get_dealers_from_cf(url)
+        context={dealerships}        
         # Concat all dealer's short name
-        #dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
-        print(context["dealerships"])
+        dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
+        #print(context["dealerships"])
         # Return a list of dealer short name
         #return HttpResponse(dealer_names)
         return render(request, 'djangoapp/index.html', context)            
@@ -139,5 +143,3 @@ def get_dealerships(request):
 # Create a `add_review` view to submit a review
 
 # ...
-
-
