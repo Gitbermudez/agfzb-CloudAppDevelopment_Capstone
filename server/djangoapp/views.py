@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
 # from .restapis import related methods
-#from .restapis import get_dealers_from_cf
-#from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf
+from .models import CarMake, CarModel
+from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf, post_request, get_review_max_id
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -13,7 +13,7 @@ import logging
 import json
 #from . import restapis
 #from . import models
-#from .models import CarMake,CarModel
+
 #from .restapis import get_dealers_from_cf, get_request
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
