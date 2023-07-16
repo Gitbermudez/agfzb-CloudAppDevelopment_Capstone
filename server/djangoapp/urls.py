@@ -9,10 +9,8 @@ urlpatterns = [
     # view refers to the view function
     # name the URL
     # path for about view
-
     #path('', views.about, name='about'),
     path('about/', views.about_request, name='about'),
-
     # path for contact us view
     path('contact/', views.contact_request, name='contact'),
     # path for registration
@@ -23,11 +21,7 @@ urlpatterns = [
     path('logout/', views.logout_request, name='logout'),
     # path for get dealerships
     path(route='', view=views.get_dealerships, name='index'),
-    
-
     # path for dealer reviews view
-
     # path for add a review view
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #\ + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
