@@ -68,7 +68,7 @@ class CarModel(models.Model):
 class CarDealer:
 
 
-    def __init__(self, address, city, full_name, id, lat, long, st, zip):
+    def __init__(self, address, city, full_name, id, lat, long, short_name, st, zip):
         # Dealer address
         self.address = address
         # Dealer city
@@ -81,7 +81,8 @@ class CarDealer:
         self.lat = lat
         # Location long
         self.long = long
-
+        # Dealer short name
+        self.short_name = short_name
         # Dealer state
         self.st = st
         # Dealer zip
