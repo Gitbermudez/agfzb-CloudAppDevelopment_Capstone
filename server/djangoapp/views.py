@@ -129,7 +129,7 @@ def get_dealerships(request):
         #url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/get-review"
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
-        context["dealerships"] = dealerships
+        context["dealership_list"] = dealerships
 
         #context={dealerships}
         # Concat all dealer's short name
@@ -144,12 +144,10 @@ def get_dealerships(request):
 def get_dealer_details(request, id):
     if request.method == "GET":
         context = {}
-        #dealer_url = "https://53c4f092.eu-gb.apigw.appdomain.cloud/api/dealerships"
         dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/get-dealership"
         dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
     
-        #review_url = "https://53c4f092.eu-gb.apigw.appdomain.cloud/api/review"
         review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/get-review"
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
         print(reviews)
