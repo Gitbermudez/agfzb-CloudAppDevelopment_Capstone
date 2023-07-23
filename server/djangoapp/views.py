@@ -159,6 +159,8 @@ def get_dealer_details(request, id):
 
 # Create a `add_review` view to submit a review
 def add_review(request, id):
+      ##dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/get-dealership"
+      ##review_post_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/post-review"
     context = {}
     dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/get-dealership"
     dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
@@ -170,6 +172,7 @@ def add_review(request, id):
         context["cars"] = cars
         
         return render(request, 'djangoapp/add_review.html', context)
+
     elif request.method == 'POST':
         if request.user.is_authenticated:
             username = request.user.username
@@ -196,4 +199,5 @@ def add_review(request, id):
             review_post_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6e8ca524-1ec6-494a-9ea4-02cc66b6023f/dealership-package/post-review"
             post_request(review_post_url, new_payload, id=id)
         return redirect("djangoapp:dealer_details", id=id)
+
 # ...

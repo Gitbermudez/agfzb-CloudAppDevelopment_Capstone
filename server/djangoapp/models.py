@@ -11,7 +11,7 @@ import json
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
 class CarMake(models.Model):
-    name = models.CharField(null=False, max_length=20, default='undefined')
+    name = models.CharField(null=False, max_length=40, default='undefined')
     # - Name
     description = models.TextField(null=True)
     # - Description
@@ -33,6 +33,7 @@ class CarModel(models.Model):
     name = models.CharField(null=False, max_length=40, default='undefined')
     # - Name
     id = models.IntegerField(default=1,primary_key=True)        
+    #dealer_id = models.CharField(null=False, max_length=40, default='undefined')
     # - Dealer id, used to refer a dealer created in cloudant database
     SEDAN = 'Sedan'
     SUV = 'SUV'
@@ -59,6 +60,7 @@ class CarModel(models.Model):
         default=COUPE
     )
     # - Type (CharField with a choices argument to provide limited choices such as Sedan, SUV, WAGON, etc.)
+    year = models.DateField(null=False)
     year = models.DateTimeField('date designed')
     def __str__(self):
         return self.type

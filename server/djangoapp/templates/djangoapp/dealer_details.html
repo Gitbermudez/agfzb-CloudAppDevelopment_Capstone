@@ -26,17 +26,18 @@
                     <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
                 </li>
                 {% else %}
-                <li>
+                <!-- <li> -->
                     <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                         {% csrf_token %}
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Username" name="username" >
                             <input type="password" class="form-control" placeholder="Password" name="psw" >
                             <button class="btn btn-primary" type="submit">Login</button>
-                            <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                            <!-- <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a> -->
+                            <a class="nav-link" style="font-size:15px" href="{% url 'djangoapp:registration' %}">Sign Up</a>                            
                         </div>
                     </form>
-                </li>
+                <!-- </li> -->
                 {% endif %}
             </ul>
             <!-- <a class="nav navbar-nav" class="active" href="about">About</a>
@@ -44,7 +45,7 @@
         </div>
     </nav>
     <!-- Add reviews as cards -->
-    <h3>Reviews for <b>{{dealer.full_name}}</b></h3>
+   <h3>Reviews for <b>{{dealer.full_name}}</b></h3>
     <hr>
     {% if reviews %}
     <div class="container">
@@ -77,8 +78,40 @@
         <p>No reviews are available.</p>
     {% endif %}
        
-<a class="btn btn-link" href="{% url 'djangoapp:add_review' dealer.id%}">Add Review</a>
+<a class="btn btn-link" href="{% url 'djangoapp:add_review' dealer.id%}">Add Review</a> 
+<!-- <main class="container" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>{{ dealer.full_name }}</h2>
+            <p>{{ dealer.address }}</p>
+            <p>{{ dealer.city }}, {{ dealer.st }} {{ dealer.zip }}</p>
+        </div>
+    </div>
 
+    <hr>
+
+    <h3>Dealer Reviews</h3>
+
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.car_make }}, {{ review.car_model }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">By {{ review.name }}</h6>
+                    <p class="card-text">{{ review.review }}</p>
+                    <p class="card-text">Purchase: {{ review.purchase }}</p>
+                    <p class="card-text">Purchase Date: {{ review.purchase_date }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 
     </body>
 

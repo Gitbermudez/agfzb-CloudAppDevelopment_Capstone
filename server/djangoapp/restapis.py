@@ -115,8 +115,10 @@ def get_dealer_by_id_from_cf(url, id):
                     zip=dealer_doc["zip"]
                 )
                 results.append(dealer_obj)
-    #return dealer_obj
+        #return dealer_obj
     return results[0]
+
+
 
 # - Call get_request() with specified arguments
 # - Parse JSON results into a DealerView object list
