@@ -64,8 +64,10 @@
                     {% endif %}
                     <div class="card-body bg-light">
                         {% if review.car_make%}
-                        <h5 class="card-title">{{review.car_make}}, {{review.car_model}} </h5>
-                        <h5 class="card-title">{{review.car_year}}</h5>
+                       <!-- <h5 class="card-title">{{review.car_make}}, {{review.car_model}} </h5> -->
+                        <h5 class="card-title">{{review.car_make}}  </h5>
+                        <h5 class="card-title">{{review.car_model}}</h5>                        
+                        <h5 class="card-title" >{{review.car_year}}</h5>
                         {% endif %}
                         <p class="card-text">{{review.review}}</p>
                     </div>
@@ -78,6 +80,7 @@
         <p>No reviews are available.</p>
     {% endif %}
        
+<!-- <a class="btn btn-link" href="{% url 'djangoapp:add_review' dealer.id%}">Add Review</a>  -->
 <a class="btn btn-link" href="{% url 'djangoapp:add_review' dealer.id%}">Add Review</a> 
 <!-- <main class="container" style="padding-top: 30px;">
     <div class="row">
