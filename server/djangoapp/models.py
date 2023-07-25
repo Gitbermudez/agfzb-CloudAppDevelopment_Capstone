@@ -11,9 +11,9 @@ import json
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
 class CarMake(models.Model):
-    name = models.CharField(null=False, max_length=40, default='undefined')
+    name = models.CharField(null=False, max_length=50, default='undefined')
     # - Name
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, max_length=500)
     # - Description
     def __str__(self):
     # - __str__ method to print a car make object
@@ -29,8 +29,9 @@ class CarMake(models.Model):
 # - __str__ method to print a car make object
 class CarModel(models.Model):
     make = models.ForeignKey(CarMake, null=False, on_delete=models.CASCADE)  
+    #car_make = models.ForeignKey(CarMake, null=False, on_delete=models.CASCADE)  
     # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
-    name = models.CharField(null=False, max_length=40, default='undefined')
+    name = models.CharField(null=False, max_length=50, default='undefined')
     # - Name
     id = models.IntegerField(default=1,primary_key=True)        
     #dealer_id = models.CharField(null=False, max_length=40, default='undefined')
@@ -61,6 +62,7 @@ class CarModel(models.Model):
     )
     # - Type (CharField with a choices argument to provide limited choices such as Sedan, SUV, WAGON, etc.)
     year = models.DateField(null=False)
+    # - Year (DateField)    
     year = models.DateTimeField('date designed')
     def __str__(self):
         return self.type
@@ -70,7 +72,7 @@ class CarModel(models.Model):
 class CarDealer:
 
 
-    def __init__(self, address, city, full_name, id, lat, long, short_name, st, zip):
+    def __init__(self, address, city, full_name, id, lat, short_name, long, st, zip):
         # Dealer address
         self.address = address
         # Dealer city

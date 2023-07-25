@@ -111,6 +111,7 @@ def registration_request(request):
             login(request, user)
             return redirect("djangoapp:index")
         else:
+            #messages.warning(request, "The user already exists.")
             return render(request, 'djangoapp/user_registration.html', context)
 
 
@@ -168,6 +169,7 @@ def add_review(request, id):
     if request.method == 'GET':
         # Get cars for the dealer
         cars = CarModel.objects.all()
+        #cars = CarModel.objects.filter(id=id)
         print(cars)
         context["cars"] = cars
         
