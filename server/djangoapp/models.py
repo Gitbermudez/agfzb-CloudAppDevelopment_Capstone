@@ -28,12 +28,15 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 class CarModel(models.Model):
-    make = models.ForeignKey(CarMake, null=False, on_delete=models.CASCADE)  
+    #make = models.ForeignKey(CarMake, null=False, on_delete=models.CASCADE)
+    make = models.ForeignKey(CarMake, on_delete=models.CASCADE)    
     #car_make = models.ForeignKey(CarMake, null=False, on_delete=models.CASCADE)  
     # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
-    name = models.CharField(null=False, max_length=50, default='undefined')
+    #name = models.CharField(null=False, max_length=50, default='undefined')
+    name = models.CharField(max_length=50, default='undefined')    
     # - Name
-    id = models.IntegerField(default=1,primary_key=True)        
+    #id = models.IntegerField(default=1,primary_key=True)    
+    id = models.AutoField(primary_key=True)
     #dealer_id = models.CharField(null=False, max_length=40, default='undefined')
     # - Dealer id, used to refer a dealer created in cloudant database
     SEDAN = 'Sedan'
