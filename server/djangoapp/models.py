@@ -33,10 +33,12 @@ class CarModel(models.Model):
     #car_make = models.ForeignKey(CarMake, null=False, on_delete=models.CASCADE)  
     # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
     #name = models.CharField(null=False, max_length=50, default='undefined')
-    name = models.CharField(max_length=50, default='undefined')    
+    #name = models.CharField(max_length=50, default='undefined')
+    name = models.CharField(null=False, max_length=30, default="Specify Model")
     # - Name
     #id = models.IntegerField(default=1,primary_key=True)    
     id = models.AutoField(primary_key=True)
+    #id = models.IntegerField(default=1)
     #dealer_id = models.CharField(null=False, max_length=40, default='undefined')
     # - Dealer id, used to refer a dealer created in cloudant database
     SEDAN = 'Sedan'
@@ -59,16 +61,19 @@ class CarModel(models.Model):
     ]
     type = models.CharField(
         null=False,
-        max_length=20,
+        max_length=30,
         choices=TYPE_CHOICES,
         default=COUPE
     )
     # - Type (CharField with a choices argument to provide limited choices such as Sedan, SUV, WAGON, etc.)
-    year = models.DateField(null=False)
+    #year = models.DateField(null=False)
+    year = models.DateField()
     # - Year (DateField)    
-    year = models.DateTimeField('date designed')
+    #year = models.DateTimeField('date designed')
     def __str__(self):
-        return self.type
+        #return self.type
+            return "Model Name : " + self.name + ", " \
+            "Car Type : " + self.type
     # - __str__ method to print a car make object
     #         )
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
