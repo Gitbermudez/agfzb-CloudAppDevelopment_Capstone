@@ -7,34 +7,67 @@
     <title>Dealership Review</title>
 
 </head>
-
-    <body>
-    <!-- Remove this line the first time you edit this file -->
-    <!---- This is the index page of your Django app! -->
-
-
-    <!--Add a nav bar here -->
-    <nav class="navbar navbar-light bg-light">
+<body>
+<!-- <body style="background-image: url('https://m.media-amazon.com/images/I/8126RrTSQHL._SL1500_.jpg'); 
+background-size: cover; background-repeat: no-repeat;" > -->
+    <nav class="navbar navbar-expand-sm bg-light">
         <div class="container-fluid">
-            <div class="navbar-header">
-            <!--<a class="navbar-brand" href="#">Best Cars</a>
-                <a class="nav navbar-nav" class="active" href="about">About</a>
-                <a class="nav navbar-nav" href="contact">Contact Us</a>                
-            -->
-        <!--    <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars Dealerships</a>
-        -->
-            <a class="navbar-brand" href="#">Best Cars Dealerships</a>
+            <div class="navbar-brand">
+                <img src="https://st4.depositphotos.com/25658280/27299/v/600/depositphotos_272990568-stock-illustration-car-dealer-logo-icon-vector.jpg" 
+                alt="company logo" width="60px" >
+                <b>Best Cars Dealership</b>
             </div>
+        <ul class="navbar-nav ml-auto">
 
-            <a class="nav navbar-nav" class="active" href="about">About</a>
-            <a class="nav navbar-nav" href="contact">Contact Us</a>             
+            <li class="nav-item">
+                <a class="nav-link" style="font-weight: bold; color: black" href="{% url 'djangoapp:index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="font-weight: bold; color: black" class="active" href="{% url 'djangoapp:about' %}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="font-weight: bold; color: black" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li>
+                <a class="btn btn-link" style="font-weight: bold; color: #D92121" href="#">{{ user.first_name }}({{ user.username }})</a>
+                <a class="btn btn-link" style="font-weight: bold; color: black" href="{% url 'djangoapp:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            {% if message %}
+          <div class="alert alert-warning"> 
+            {{ message }} 
+            {% endif %}
+            <li>
+                <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" style="margin: 0 5px;" class="form-control" placeholder="Enter Username" name="username" >
+                        <input type="password" style="margin:0 5px;" class="form-control" placeholder="Enter Password" name="psw" >
+                        <button class="btn btn-dark" style="margin:0 5px;" type="submit">Login</button>
+                        <a class="btn btn-dark" style="margin:0 5px;" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                    </div>
+                </form>
+            </li>
+            {% endif %}
+    
+        </ul>
         </div>
     </nav>
-    <h2>
-        Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
-    </h2>
-    <!--Add a dealer table here -->
-
-    </body>
-
+    <div class="about-section" style="color:white; padding: 30px; width: 700px">
+        <h1 style="color: black"><br>
+            <b>Welcome</b> to Best Cars dealership, home to the best cars in North America.
+            <br>
+            We sell domestic and imported cars at reasonable prices.
+        </h1>
+        <p style="color: black">
+            Discover the best car-buying experience at Best Cars Dealership! With a wide selection of new and pre-owned vehicles from top brands, 
+            competitive pricing, and a knowledgeable sales team, we make finding your dream car effortless. 
+            Plus, our state-of-the-art service center ensures your vehicle stays in top condition. 
+            Visit us today and drive away in your perfect ride!
+        </p>
+    </div>
+      
+</body>
 </html>
